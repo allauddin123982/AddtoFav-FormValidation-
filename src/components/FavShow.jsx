@@ -1,9 +1,10 @@
 import React from "react";
-import { useAppContext } from "./context/AppCpntext";
+import { useContext } from "react";
+import { AppContext } from './AppContext';
 
 
 const FavShow = () => {
-  const { fav, addToFav } = useAppContext();
+  const { fav } = useContext(AppContext);
   return (
     <>
       <h1 className="mt-10 text-center font-bold text-3xl">

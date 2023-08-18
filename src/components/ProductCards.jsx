@@ -1,10 +1,10 @@
-import React from "react";
-import { useAppContext } from "./context/AppCpntext";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 import { AiFillHeart } from "react-icons/ai";
 
 const ProductCards = (props) => {
 
-    const {fav, addToFav} = useAppContext();
+    const {fav, addToFav} = useContext(AppContext);
     console.log('fav are ',fav);
 
   return (

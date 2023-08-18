@@ -5,7 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./Favorites";
-import AppContextProvider from "./components/context/AppCpntext";
+import {AppContextProvider} from "./components/AppContext";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +22,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
      <AppContextProvider >
-    
      <RouterProvider router={router} />
      </AppContextProvider>
   </React.StrictMode>

@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useAppContext } from "./context/AppCpntext";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "./AppContext";
 import { AiFillHeart } from "react-icons/ai";
+
+import { ToastContainer, toast } from 'react-toastify';
 
 const Products = () => {
   const [data, setData] = useState([]);
 
-  const { fav, addToFav } = useAppContext();
-  console.log("fav are ");
-  
-  
+  const { addToFav } = useContext(AppContext);
+
+
+  const helo = () =>{
+    toast.success("Saved to Favorites")
+  }
+
+
   useEffect(() => {
     fakeStore();
   }, []);
@@ -20,43 +26,59 @@ const Products = () => {
 
     console.log("The data: ", data);
   };
+
+  const [colorr, setColor] = useState('');
+  const [value, setValue] = useState('');
+
+  function handleChangeColor(e) {
+    setValue(e.target.value);
+    handleChangeColor(value);
+  
+  }
+  function handleChangeColor(value){
+    setColor('#FF0000');
+  }
+
   return (
     <>
-      <div className="flex flex-wrap ">
+      <div className="flex flex-wrap gap-10 m-20">
         {data.length > 0 &&
           data.map((elements) => (
-            <div className="border bg-white rounded-lg drop-shadow-2xl mt-20 max-w-[400px] h-[600px] mx-auto  ">
-              <div className="p-10 flex flex-col justify-center items-center h-[600px] ">
-                <div className="image w-[200px] overflow-hidden ">
+            <div className="  bg-white rounded-lg drop-shadow-2xl max-w-[300px] h-[400px] mx-auto ">
+              <div className="p-5 flex flex-col justify-center items-center h-[400px] ">
+                <div className="image w-[100px] h-[120px] overflow-hidden ">
                   <img
                     src={elements.image}
                     alt=""
-                    className="rounded-full hover:scale-110"
+                    className="rounded-full hover:scale-110 h-[100px]"
                   />
                 </div>
-                <div className="body pt-5 ">
-                  <p className="title pt-0 text-2xl font-bold">
+                <div className="body mt-2">
+                  <p className="title text-xl font-bold overflow-hidden  h-[30px]">
                     {elements.title}
                   </p>
-                  <p className="price pt-0 text-xl">{elements.price}$</p>
-                  <p class="description text-justify mt-5 h-[100px] overflow-hidden">
+                  <p className="price">{elements.price}$</p>
+                  <p class="description text-justify mt-2 h-[50px] overflow-hidden">
                     {elements.description}
                   </p>
 
                   <button
-                    className="border rounded mt-5 font-bold p-3 flex items-center gap-1"
-                    onClick={() => {
+                    className="border rounded mt-3 font-bold p-3 flex items-center gap-1"
+                    onClick={(e) => {
                       addToFav(elements);
+                      helo();
+                      handleChangeColor({e});
                     }}
                   >
-                    <icon className="text-gray-500 hover:text-red-600 text-xl font-bold">
-                      <AiFillHeart />
+                    <icon  className="text-gray-500 hover:text-red-600 text-xl font-bold ">
+                      <AiFillHeart style={{ color: colorr }}/>
                     </icon>
                   </button>
                 </div>
               </div>
             </div>
           ))}
+          <ToastContainer />
       </div>
     </>
   );
