@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Products from "./components/Products";
+// import Test from "./components/Test";
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
  
@@ -10,6 +11,7 @@ function App() {
       <Header />
       
       <Products />
+      {/* <Test/> */}
       
     </div>
   );

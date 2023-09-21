@@ -9,8 +9,8 @@ const ProductCards = (props) => {
 
   return (
     <>
-      <div className="border drop-shadow-2xl mt-20 max-w-[400px] h-[600px] mx-auto fixed">
-        <div className="p-10 flex flex-col justify-center items-center h-[600px] ">
+      <div className="border drop-shadow-2xl mt-20  max-w-[400px] h-[600px] mx-auto fixed">
+        <div className="p-10 flex flex-col justify-center items-center ">
           <div className="image w-[200px] overflow-hidden ">
             <img src={props.Pic} alt="" className="hover:scale-110" />
           </div>

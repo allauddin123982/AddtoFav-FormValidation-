@@ -32,7 +32,7 @@ const Login = () => {
        
     }
     function handlesubmit(){
-        toast.success("successfully")
+        toast.success("Successfully Register")
     }
 
   return (

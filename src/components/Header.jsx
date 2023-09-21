@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { AiTwotoneHome } from "react-icons/ai";
-import { TfiGallery } from "react-icons/tfi";
 import { MdFavorite, MdLocationOn } from "react-icons/md";
 import { BiLogIn} from "react-icons/bi";
+import { BsFillCartCheckFill} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 
@@ -39,9 +39,11 @@ const Header = () => {
               </Link>
             </li>
      
-            <li className=" p-1 flex items-center gap-x-2 ">
-              <TfiGallery className="inline-block" />
-              Gallery
+            <li className=" p-1 ">
+            <Link to={"/cart"} className="flex items-center gap-x-2">
+              <BsFillCartCheckFill className="inline-block" />
+              Cart
+              </Link>
             </li>
      
             <li className=" p-1 flex items-center gap-x-2 " onClick={() => setToggle(!toggle)}>

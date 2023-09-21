@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./Favorites";
 import {AppContextProvider} from "./components/AppContext";
+import Cart from "./components/Cart";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: "fav",
     element: <Favorites />,
   },
+  {
+    path: "cart",
+    element: <Cart />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
