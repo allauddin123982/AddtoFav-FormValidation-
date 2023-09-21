@@ -1,18 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
+import { CartContext } from "./CartContext";
 import { AiFillHeart } from "react-icons/ai";
 
 import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
   const [data, setData] = useState([]);
+  
   const { addToFav } = useContext(AppContext);
-  const [cartItems, setCartItems] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [toggle, setToggle] = useState(false);
-  const [count, setCount] = useState(0);
-  const [showindec, setShowIncDec] = useState(null);
-  const [selectedCardId, setSelectedCardId] = useState(null);
+  const { addToCart } = useContext(CartContext);
+
+  const [selectedCardId, setSelectedCardId] = useState([]);
 
   const savedToFav = () => {
     toast.success("Saved to Favorites");
@@ -29,56 +28,12 @@ const Products = () => {
   };
 
   function handleChangeColor(id) {
-    setSelectedCardId(id);
-  }
-
-  function showBtns(id) {
-    setShowIncDec(id);
-    if (toggle === false) {
-      setToggle(true);
-    }
-  }
-
-  function handleAddPrice(id, price) {
-    setCartItems([...cartItems, id]);
-
-    setTotal((prevTotal) => prevTotal + price);
-  }
-
-  function handleSubPrice(id, price) {
-    if (total > 0) {
-      const itemIndex = cartItems.indexOf(id);
-      if (itemIndex !== -1) {
-        // Item found in the cart
-        setTotal((prevTotal) => prevTotal - price);
-        subItem();
-        // Remove the item from cartItems
-        const updatedCartItems = [...cartItems];
-        updatedCartItems.splice(itemIndex, 1);
-        setCartItems(updatedCartItems);
-      } else {
-        console.log("Item not in cart");
-      }
-    }
-  }
-
-  function addItem() {
-    setCount((count) => count + 1);
-  }
-
-  function subItem() {
-    if (count > 0) {
-      setCount((count) => count - 1);
-    }
+    setSelectedCardId([...selectedCardId, id]);
   }
 
   return (
     <>
-     {cartItems.length > 0 ? <div className=" flex justify-center gap-x-10 font-bold text-green-500 text-center m-5 text-2xl">
-        <p> item id: {cartItems.join(",")}</p>
-        <p> Total: ${Math.floor(total * 1)}</p>
-        <p>Products {count}</p>
-      </div>:<p className="text-red-600 flex justify-center font-serif text-xl"> no Items in cart</p>}
+     
       <div className="flex flex-wrap gap-x-4 gap-y-10 m-10 max-w-[1440px] mx-auto">
         {data.length > 0 &&
           data.map((elements) => (
@@ -102,7 +57,7 @@ const Products = () => {
                   </p>
                   <div className="flex gap-x-28">
                     <button
-                      className=" border border-blue-600  rounded mt-4 font-bold p-3 flex items-center gap-1"
+                      className=" mt-4 font-bold p-3 flex items-center gap-1"
                       onClick={() => {
                         addToFav(elements);
                         savedToFav();
@@ -121,39 +76,14 @@ const Products = () => {
                     </button>
 
                     <button
-                      className="border rounded mt-3 font-bold p-3 flex items-center "
+                      className="border rounded mt-3 font-bold w-[100px] p-1 flex items-center "
                       onClick={() => {
-                        showBtns(elements.id);
-                        // handlePrice(elements.price);
+                        addToCart(elements);
                       }}
                     >
-                      Buy now
+                      Add to cart
                     </button>
                   </div>
-
-                  {toggle === true && showindec === elements.id ? (
-                    <div className="p-1 w-[250px] flex justify-end gap-x-1">
-                      <>
-                        <button
-                          className="border p-1 w-[40px]"
-                          onClick={() => {
-                            addItem();
-                            handleAddPrice(elements.id, elements.price);
-                          }}
-                        >
-                          +
-                        </button>
-                        <button
-                          className="border p-1 w-[40px]"
-                          onClick={() => { 
-                            handleSubPrice(elements.id, elements.price);
-                          }}
-                        >
-                          -
-                        </button>
-                      </>
-                    </div>
-                  ) : null}
                 </div>
               </div>
             </div>

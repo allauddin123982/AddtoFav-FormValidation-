@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./Favorites";
 import {AppContextProvider} from "./components/AppContext";
 import Cart from "./components/Cart";
+import { CartContextprovider } from "./components/CartContext";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
      <AppContextProvider >
+      <CartContextprovider>
+
      <RouterProvider router={router} />
+      </CartContextprovider>
      </AppContextProvider>
   </React.StrictMode>
 );
