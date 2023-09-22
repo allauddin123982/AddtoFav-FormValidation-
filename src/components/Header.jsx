@@ -13,8 +13,6 @@ const Header = () => {
   const [toggle, setToggle] = useState(false);
   const {favCount} = useContext(AppContext)
   const {cartItemCount} = useContext(CartContext)
-  console.log('faccounts ',favCount)
-  console.log('cartItemCount ',cartItemCount)
   
   return (
     <>
@@ -69,10 +67,10 @@ const Header = () => {
             </li>
             <li className="p-1 ">
               <Link to={"/fav"} className="flex items-center gap-x-1">
-                <MdFavorite className=" inline-block" />
+                <MdFavorite className={`inline-block ${ favCount>0 ?"text-red-500":null } `} />
                 {
                   favCount>0 ?
-                 <p className="absolute top-2 ms-1 text-red-500 font-bold">{favCount}</p>
+                 <p className="absolute top-4 ms-1 text-sm font-bold">{favCount}</p>
                   :null
                 }
                 Favourite
@@ -84,7 +82,7 @@ const Header = () => {
                 <BsFillCartCheckFill className="inline-block" />
                 {
                   cartItemCount>0 ?
-                 <p className="absolute top-2 ms-1 text-red-500 font-bold">{cartItemCount}</p>
+                 <p className="absolute top-4 ms-1 text-sm font-bold">{cartItemCount}</p>
                   :null
                 }
                 Cart

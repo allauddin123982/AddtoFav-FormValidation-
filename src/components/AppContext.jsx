@@ -1,24 +1,31 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from 'react';
 
 export const AppContext = createContext();
-//context will be used to share data (in this case,
-// the list of favorite items and the addToFav function
-//adsd
+
 export const AppContextProvider = (props) => {
-  const [fav, setfav] = useState([]);
-  //This state variable will hold the list of favorite items.
+  const [fav, setFav] = useState([]);
   const [favCount, setFavCount] = useState(0);
 
-  const addToFav = (props) => {
-    const oldfav = [...fav];
-    const newfav = oldfav.concat(props);
-    setfav(newfav);
+  const handleFav = (item) => {
+    const foundIndex = fav.findIndex((each) => each.id === item.id);
 
-    setFavCount((prevCount) => prevCount + 1);
+    if (foundIndex !== -1) {
+      // Item already exists in favorites, remove it
+      const updatedArray = [...fav];
+      updatedArray.splice(foundIndex, 1);
+      setFav(updatedArray);
+      setFavCount((prevCount) => prevCount - 1);
+    } else {
+      // Item doesn't exist in favorites, add it
+      const newfav = [...fav, item];
+      setFav(newfav);
+      setFavCount((prevCount) => prevCount + 1);
+    }
   };
+ 
 
   return (
-    <AppContext.Provider value={{ fav, addToFav, favCount }}>
+    <AppContext.Provider value={{ fav, favCount, handleFav }}>
       {props.children}
     </AppContext.Provider>
   );

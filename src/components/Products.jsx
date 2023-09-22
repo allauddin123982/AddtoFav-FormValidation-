@@ -3,19 +3,18 @@ import { AppContext } from "./AppContext";
 import { CartContext } from "./CartContext";
 import { AiFillHeart } from "react-icons/ai";
 
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
   const [data, setData] = useState([]);
-  
-  const { addToFav } = useContext(AppContext);
+
+  const { handleFav } = useContext(AppContext);
   const { addToCart } = useContext(CartContext);
 
   const [selectedCardId, setSelectedCardId] = useState([]);
-
-  const savedToFav = () => {
-    toast.success("Saved to Favorites");
-  };
+  // const savedToFav = () => {
+  //   toast.success("Saved to Favorites");
+  // };
 
   useEffect(() => {
     fakeStore();
@@ -28,13 +27,21 @@ const Products = () => {
   };
 
   function handleChangeColor(id) {
-    setSelectedCardId([...selectedCardId, id]);
+    const foundItem = selectedCardId.findIndex((each) => each === id);
+    if (foundItem !== -1) {
+      const updatedFavId = [...selectedCardId];
+      updatedFavId.splice(foundItem, 1);
+      setSelectedCardId(updatedFavId);
+
+    } else {
+      setSelectedCardId([...selectedCardId, id]);
+      // savedToFav();
+    }
   }
 
   return (
     <>
-     
-      <div className="flex flex-wrap gap-x-4 gap-y-10 m-10 max-w-[1440px] mx-auto">
+      <div className="flex flex-wrap gap-x-4 gap-y-10 m-10 max-w-[1500px] mx-auto ">
         {data.length > 0 &&
           data.map((elements) => (
             <div className="  bg-white rounded-lg drop-shadow-2xl max-w-[300px] h-[380px] mx-auto ">
@@ -59,15 +66,15 @@ const Products = () => {
                     <button
                       className=" mt-4 font-bold p-3 flex items-center gap-1"
                       onClick={() => {
-                        addToFav(elements);
-                        savedToFav();
+                        handleFav(elements);
+                        // savedToFav();
                         handleChangeColor(elements.id);
                       }}
                     >
                       <icon className="text-gray-500 hover:text-red-600 text-xl font-bold ">
                         <AiFillHeart
                           className={`${
-                            selectedCardId === elements.id
+                            selectedCardId.find((each) => each === elements.id)
                               ? "text-[#FF0000]"
                               : ""
                           }`}
@@ -88,7 +95,7 @@ const Products = () => {
               </div>
             </div>
           ))}
-        <ToastContainer />
+        {/* <ToastContainer className="mt-16" /> */}
       </div>
     </>
   );

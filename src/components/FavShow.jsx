@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AppContext } from "./AppContext";
-
+import {CiSquareRemove} from 'react-icons/ci'
 const FavShow = () => {
-  const { fav } = useContext(AppContext);
+  const { fav,handleFav } = useContext(AppContext);
+  console.log({fav})
   return (
     <>
     
@@ -11,7 +12,11 @@ const FavShow = () => {
       <div className="flex flex-wrap  max-w-[1240px] mx-auto">
         {fav.length > 0 ? (
           fav.map((elements) => (
-            <div className="bg-white rounded-lg  border drop-shadow-2xl mt-10 max-w-[400px] h-[600px] mx-auto ">
+            <div key={elements.id} className="bg-white rounded-lg  border drop-shadow-2xl mt-10 max-w-[400px] h-[600px] mx-auto ">
+              <button className="float-right text-3xl" onClick={() => handleFav(elements)}>
+
+              <CiSquareRemove  />
+              </button>
               <div className="p-10 flex flex-col justify-center items-center h-[600px] ">
                 <div className="image w-[200px] overflow-hidden ">
                   <img

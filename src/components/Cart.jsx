@@ -80,7 +80,7 @@ const Cart = () => {
                           {elements.description.substring(0, 60)}
                         </p>
                         <button
-                          className="bg-gray-300 p-2 w-[100px] rounded font-bold  "
+                          className="bg-gray-300 p-2 w-[100px] rounded font-bold hover:bg-[#F7CA00] transition-all"
                           onClick={() => {
                             showBtns(elements.id);
                             // handlePrice(elements.price);
@@ -89,10 +89,10 @@ const Cart = () => {
                           Quatity
                         </button>
                         {toggle === true && showindec === elements.id ? (
-                          <div className="pt-2 w-[250px] flex justify-start gap-x-1">
+                          <div className="pt-2 w-[100px] flex justify-center gap-x-1">
                             <>
                               <button
-                                className="p-1 w-[40px] box-border bg-gray-400"
+                                className="p-1 w-[40px] box-border bg-gray-400 hover:bg-[#131921] hover:text-white transition-all"
                                 onClick={() => {
                                   addItem();
                                   handleAddPrice(elements.id, elements.price);
@@ -101,7 +101,7 @@ const Cart = () => {
                                 +
                               </button>
                               <button
-                                className="p-1 w-[40px] bg-gray-400"
+                                className="p-1 w-[40px] bg-gray-400 hover:bg-[#131921] hover:text-white transition-all"
                                 onClick={() => {
                                   handleSubPrice(elements.id, elements.price);
                                 }}
