@@ -53,8 +53,8 @@ const Cart = () => {
     <>
       <Header />
       <div className="bg-gray-100 ">
-        <div className=" max-w-[1640px] flex gap-x-5 mx-auto">
-          <div className="left bg-white my-10  w-[70%]">
+        <div className="max-w-[1640px] md:flex gap-x-5 mx-20">
+          <div className="left my-10 w-[70%]">
             <div className=" border-b p-5 border-b-gray-300 font-bold text-3xl">
               Shopping Cart
             </div>
@@ -62,7 +62,7 @@ const Cart = () => {
             <div>
               {cart.length > 0 ? (
                 cart.map((elements) => (
-                  <div className="border-b-2  my-5 rounded-lg drop-shadow-2xl w-full ">
+                  <div className="border-b-2  my-5 rounded-lg drop-shadow-2xl">
                     <div className="p-2 flex items-center mx-8 gap-x-12 h-[280px] ">
                       <div className="image w-[120px] h-fit overflow-hidden rounded-full ">
                         <img
@@ -123,7 +123,7 @@ const Cart = () => {
             </div>
           </div>
 
-          <div className="right w-[20%] me-20 text-center  bg-white h-36 mt-10 rounded ">
+          <div className="right w-[20%]  text-center bg-white h-36 mt-10 rounded ">
             <div className="mt-2 text-lg">
               {/* <p> item id: {cartItems.join(",")}</p> */}
               <p className="flex justify-center gap-2"> 
