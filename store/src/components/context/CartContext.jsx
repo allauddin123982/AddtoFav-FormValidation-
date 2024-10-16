@@ -7,9 +7,10 @@ export const CartContextprovider = (props) => {
   const [cartItemCount, setCartItemCount] = useState(0);
 
   const addToCart = (props) => {
-    const oldCart = [...cart];
-    const newCart = oldCart.concat(props);
-    setCart(newCart);
+    // const oldCart = [...cart];
+    // const newCart = oldCart.concat(props);
+    // setCart(newCart);
+    setCart((prevItem) => ([...prevItem, props]))
     setCartItemCount((prev) => prev + 1)
 
   };

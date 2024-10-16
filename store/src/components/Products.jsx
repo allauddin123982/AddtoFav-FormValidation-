@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "./context/AppContext";
 import { CartContext } from "./context/CartContext";
 import { AiFillHeart } from "react-icons/ai";
-
+import { FaCartShopping } from "react-icons/fa6";
 // import { ToastContainer, toast } from "react-toastify";
 
 const Products = () => {
@@ -83,68 +83,18 @@ const Products = () => {
                   </button>
 
                   <button
-                    className="border rounded mt-3 font-bold w-[100px] p-1 flex items-center "
+                    className="border rounded mt-3 font-bold w-[100px] p-1 flex items-center gap-2 hover:bg-gray-200 "
                     onClick={() => {
                       addToCart(elements);
                     }}
                   >
-                    Add to cart
+                   <FaCartShopping /> Buy now
                   </button>
                 </div>
               </div>
             </div>
 
-            // <div className="bg-white rounded-lg drop-shadow-2xl max-w-[300px] h-[380px] mx-auto ">
-            //   <div className="p-5 flex flex-col justify-center items-center h-[400px] ">
-            //     <div className="image w-[100px] h-[120px] overflow-hidden ">
-            //       <img
-            //         src={elements.image}
-            //         alt=""
-            //         className="rounded-full hover:scale-110 h-[100px]"
-            //       />
-            //     </div>
-            //     <div className="body mt-2">
-            //       <p className="title text-xl font-bold overflow-hidden  h-[30px]">
-            //         {elements.title}
-            //       </p>
-
-            //       <p className="price">{elements.price}$</p>
-            //       <p class="description text-justify mt-2 h-[50px] ">
-            //         {elements.description.substring(0, 60)}
-            //       </p>
-            //       <div className="flex gap-x-28">
-            //        {/* Favorite button */}
-            //         <button
-            //           className=" mt-4 font-bold p-3 flex items-center gap-1"
-            //           onClick={() => {
-            //             handleFav(elements);
-            //             // savedToFav();
-            //             handleChangeColor(elements.id);
-            //           }}
-            //         >
-            //           <icon className="text-gray-500 hover:text-red-600 text-xl font-bold ">
-            //             <AiFillHeart
-            //               className={`${
-            //                 selectedCardId.find((each) => each === elements.id)
-            //                   ? "text-[#FF0000]"
-            //                   : ""
-            //               }`}
-            //             />
-            //           </icon>
-            //         </button>
-
-            //         <button
-            //           className="border rounded mt-3 font-bold w-[100px] p-1 flex items-center "
-            //           onClick={() => {
-            //             addToCart(elements);
-            //           }}
-            //         >
-            //           Add to cart
-            //         </button>
-            //       </div>
-            //     </div>
-            //   </div>
-            // </div>
+     
           ))}
         {/* <ToastContainer className="mt-16" /> */}
       </div>
