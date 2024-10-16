@@ -5,9 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./Favorites";
-import {AppContextProvider} from "./components/AppContext";
+import { AppContextProvider } from "./components/context/AppContext";
 import Cart from "./components/Cart";
-import { CartContextprovider } from "./components/CartContext";
+import { CartContextprovider } from "./components/context/CartContext";
 
 const router = createBrowserRouter([
   {
@@ -21,18 +21,17 @@ const router = createBrowserRouter([
   {
     path: "cart",
     element: <Cart />,
-  }
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <AppContextProvider >
+    <AppContextProvider>
       <CartContextprovider>
-
-     <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </CartContextprovider>
-     </AppContextProvider>
+    </AppContextProvider>
   </React.StrictMode>
 );
 

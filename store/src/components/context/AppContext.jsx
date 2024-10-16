@@ -8,7 +8,6 @@ export const AppContextProvider = (props) => {
 
   const handleFav = (item) => {
     const foundIndex = fav.findIndex((each) => each.id === item.id);
-
     if (foundIndex !== -1) {
       // Item already exists in favorites, remove it
       const updatedArray = [...fav];
@@ -17,8 +16,8 @@ export const AppContextProvider = (props) => {
       setFavCount((prevCount) => prevCount - 1);
     } else {
       // Item doesn't exist in favorites, add it
-      const newfav = [...fav, item];
-      setFav(newfav);
+      setFav((prevItem) => ([...prevItem, item]))
+
       setFavCount((prevCount) => prevCount + 1);
     }
   };

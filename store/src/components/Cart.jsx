@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "./context/CartContext";
 import Header from "../components/Header";
 const Cart = () => {
   const { cart } = useContext(CartContext);
@@ -49,6 +49,29 @@ const Cart = () => {
     }
   }
 
+  const checkout = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/checkout', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ elements: cart.elements })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      if (data.url) {
+        window.location.assign(data.url);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  }
+  
   return (
     <>
       <Header />
@@ -134,8 +157,10 @@ const Cart = () => {
                 <input type="checkbox" />
                 this order contains a gift
               </p>
-              <button className="bg-[#F7CA00] px-5 py-1 rounded-lg mt-5 text-sm w-[240px]">
-                Proceed to checkout
+              <button 
+              onClick={checkout}
+              className="bg-[#F7CA00] px-5 py-1 rounded-lg mt-5 text-sm w-[240px]">
+                Pay with stripe
               </button>
             </div>
           </div>

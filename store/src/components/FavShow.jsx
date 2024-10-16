@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "./AppContext";
+import { AppContext } from "./context/AppContext";
 import {CiSquareRemove} from 'react-icons/ci'
 const FavShow = () => {
   const { fav,handleFav } = useContext(AppContext);

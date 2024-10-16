@@ -6,8 +6,8 @@ import { SlLocationPin } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import logo from "../assets/logo.png";
-import { AppContext } from "./AppContext";
-import { CartContext } from "./CartContext";
+import { AppContext } from "./context/AppContext";
+import { CartContext } from "./context/CartContext";
 import SearchBar from "./SearchBar";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -57,7 +57,7 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="pr-4 pl-4">
+            <div className="pr-4">
               <div className="text-xs xl:text-lg ">
                 <Link to={"/cart"} className="flex items-center gap-x-1">
                   <BsFillCartCheckFill className="inline-block" />
@@ -85,7 +85,7 @@ const Header = () => {
           <div className="hover:border h-8 w-24 flex items-center justify-center">Today-deals</div>
           <div className="hover:border h-8 w-28 flex items-center justify-center">Cutomer-service</div>
           <div className="hover:border h-8 w-20 flex items-center justify-center">Gift-cards</div>
-          <div className="hover:border h-8 w-18 flex items-center justify-center">Registry</div>
+          <div className="hover:border h-8 w-20 flex items-center justify-center">Registry</div>
           <div className="hover:border h-8 w-10 flex items-center justify-center">Sell</div>
         </div>
       </header>

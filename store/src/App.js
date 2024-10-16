@@ -2,17 +2,16 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Products from "./components/Products";
-// import Test from "./components/Test";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import Slider from "./components/Slider";
+import Footer from "./components/Footer";
 function App() {
- 
   return (
     <div>
       <Header />
-
+      <Slider />
       <Products />
-      {/* <Test/> */}
-      
+      <Footer />
     </div>
   );
 }
